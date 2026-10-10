@@ -1,0 +1,5 @@
+/* System fonts only: no font downloads or other runtime network requests. */
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
