@@ -4,7 +4,9 @@ A small, local Windows Kanban board built with Tauri 2, Vue 3, TypeScript, and V
 
 ## Run it
 
-Version 0.2 implements the reviewed sticky-note design, separate calendar and quick checklist, frog mascot, local clock, and adjustable timer. The updated installer has **not yet been generated**: this computer's Windows Application Control blocks Cargo and Rust before compilation. The previous 0.1 debug ZIP does not contain this redesign. See VALIDATION.md.
+Version 0.2 implements the reviewed sticky-note design, separate calendar and quick checklist, frog mascot, local clock, and adjustable timer. The optimized Windows installer was built successfully on GitHub Actions on 10 October 2026. See [INSTALL.md](INSTALL.md) for setup and [VALIDATION.md](VALIDATION.md) for checks and platform limits.
+
+The setup file is `artifacts/installer-0.2/Life Kanban_0.2.0_x64-setup.exe` in this local workspace. It is also available as the **Life-Kanban-Windows-installer** artifact on [the successful private build](https://github.com/hery4wn/life-kanban/actions/runs/38018393728). The GitHub artifact is retained until 24 October 2026; the downloaded local copy remains available. The installer is unsigned. The previous 0.1 debug ZIP does not contain this redesign.
 
 On a Windows build machine that permits the development tools, build the installer with:
 
@@ -13,9 +15,9 @@ npm ci
 npm run tauri -- build --bundles nsis
 ```
 
-The installer is written to `src-tauri/target/release/bundle/nsis/`. It installs for the current Windows user and creates a Start menu entry. The included manually triggered GitHub Actions workflow can perform the same build on a Windows runner. No source has been uploaded by this task without your approval.
+The installer is written to `src-tauri/target/release/bundle/nsis/`. It installs for the current Windows user and creates a Start menu entry. The included manually triggered GitHub Actions workflow performs the same build on a Windows runner. The user approved uploading application source to the private [hery4wn/life-kanban](https://github.com/hery4wn/life-kanban) repository. Board data and local build tools were excluded.
 
-When an installer is available, run the setup executable, open Life Kanban from Start, and press Ctrl + Shift + K. Keep startup off until the installed application is in place.
+Run the setup executable, open Life Kanban from Start, and press Ctrl + Shift + K. Keep startup off until the installed application is in place.
 
 The standalone executable is built at `src-tauri/target/release/life-kanban.exe` (or `target/debug/life-kanban.exe` for a debug build). Windows 10/11 x64 and the Microsoft Edge WebView2 Runtime are required. WebView2 is normally already installed; on an offline machine, install Microsoft's offline Runtime package first. No Node or Rust is needed to run a built executable.
 

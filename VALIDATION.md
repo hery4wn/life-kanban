@@ -6,11 +6,17 @@ The approved interface is implemented in the Vue application: title-only sticky 
 
 TypeScript checking and production frontend compilation passed. Six unit tests and eleven Microsoft Edge UI tests passed, including legacy JSON migration, quick-task persistence, calendar navigation, dragging/reordering, confirmation, appearance settings, and timer pause/resume/reload/completion/reset. A final visual review used the built frontend at 1366×768. Dependency audit reported zero vulnerabilities.
 
-**Installer blocked:** on this date Windows Application Control denied execution of Cargo and Rust, including the directly installed toolchain binaries, with OS error 4551. The NSIS installer build stopped before Rust compilation. New native migration tests are present but could not be executed. Version 0.2 native compilation, install/uninstall, and target Windows acceptance remain unverified. No security policy was changed.
+**Local build restriction:** on this date Windows Application Control denied execution of Cargo and Rust, including the directly installed toolchain binaries, with OS error 4551. The local NSIS installer build stopped before Rust compilation. No security policy was changed.
 
-The `.github/workflows/windows-installer.yml` workflow is prepared for an approved Windows runner. It has not been uploaded or executed. `artifacts/Life-Kanban-0.2-source.zip` contains the source and build instructions, **not a compiled app or installer**. The older ZIP described below remains version 0.1 and does not contain the redesign.
+The user authorized a private GitHub repository and a Windows Actions build. The source is at [hery4wn/life-kanban](https://github.com/hery4wn/life-kanban), with no local board data, attachments, compiler tools, or dependency folders uploaded. [Build run 38018393728](https://github.com/hery4wn/life-kanban/actions/runs/38018393728) completed successfully in 11 minutes 10 seconds, passing frontend compilation, six unit tests, all three native persistence tests, optimized native compilation, and NSIS installer packaging. The build used application commit `f490307113e9b8304470b2a8e4266edb4bd1a18f`.
 
-## Delivered build
+The installer was downloaded and extracted to `artifacts/installer-0.2/Life Kanban_0.2.0_x64-setup.exe` (1,241,811 bytes). Its Windows executable headers were checked. SHA-256: `0A78CE7D1FC16F743CF2B044B892269F5E08DB7C030FDFFA3673EF64D80B895B`. The downloaded ZIP matched GitHub's artifact digest `661fb30b8ab07a36db2bf030565ce7176afe93215d7d5f6502491267949b3710`. The installer is not digitally signed.
+
+Version 0.2 install/uninstall and interactive native tray, startup, and click-through acceptance on the target computer remain unverified. Automated checks and successful packaging do not establish those behaviors. The older manual checks below apply only to version 0.1.
+
+`artifacts/Life-Kanban-0.2-source.zip` contains source and build instructions, **not a compiled app or installer**. The older ZIP described below remains version 0.1 and does not contain the redesign.
+
+## Historical version 0.1 test build (4 October 2026)
 
 `artifacts/Life-Kanban-Windows-x64.zip` contains a standalone Windows x64 **debug/test build**, usage instructions, and this report. Requires Microsoft Edge WebView2 Runtime. No Node.js or Rust is needed to run it. It is not a signed installer or optimized production release.
 
