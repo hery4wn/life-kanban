@@ -1,6 +1,6 @@
 [package]
 name = "life-kanban"
-version = "0.2.0"
+version = "0.2.1"
 description = "A quiet Kanban board for your Windows desktop"
 authors = ["Life Kanban"]
 edition = "2021"

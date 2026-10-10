@@ -177,7 +177,7 @@ onBeforeUnmount(() => {
       <header class="topbar">
         <div class="brand">
           <span class="logo" aria-hidden="true"><i></i><i></i><i></i></span>Life
-          Kanban
+          Kanban <small class="app-version">v0.2.1</small>
         </div>
         <div class="top-actions">
           <span v-if="!desktop" class="preview-badge"

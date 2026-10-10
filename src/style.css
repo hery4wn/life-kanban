@@ -2870,7 +2870,7 @@ body {
   }
 }
 /* Desktop runtime and accessible editing controls. */
-html,
+html:root,
 body,
 #app {
   margin: 0;
@@ -2896,7 +2896,7 @@ body,
 .workspace .calendar,
 .workspace .quick-tasks,
 .workspace .time-widget {
-  opacity: var(--surface-alpha, 0.85);
+  opacity: 1;
   backdrop-filter: blur(var(--surface-blur, 12px));
 }
 .workspace.is-editing .board,
@@ -3319,4 +3319,35 @@ button:disabled {
   letter-spacing: 0;
   padding: 8px;
   color: inherit;
+}
+/* Fade surfaces, never the text or controls inside them. */
+.workspace .board,
+.workspace .calendar,
+.workspace .quick-tasks,
+.workspace .time-widget {
+  background: rgb(252 253 243 / var(--surface-alpha, 0.85));
+}
+.workspace.is-dark .board,
+.workspace.is-dark .calendar,
+.workspace.is-dark .quick-tasks,
+.workspace.is-dark .time-widget {
+  background: rgb(38 59 43 / var(--surface-alpha, 0.85));
+}
+.workspace .brand,
+.workspace .section-title {
+  width: fit-content;
+  background: #fcfdf3f2;
+  color: #303b32;
+  padding: 7px 12px;
+  border-radius: 14px;
+}
+.workspace.is-dark .brand,
+.workspace.is-dark .section-title {
+  background: #263b2bf2;
+  color: #e3ecd6;
+}
+.app-version {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0;
 }

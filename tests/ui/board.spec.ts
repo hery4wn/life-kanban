@@ -134,6 +134,33 @@ test("damaged browser data is preserved, with recovery feedback", async ({
     ),
   ).toBe("{bad");
 });
+test("desktop view keeps the root transparent and text opaque at low opacity", async ({ page }) => {
+  await edit(page);
+  await add(page, "Readable project");
+  await page.getByRole("button", { name: "Settings", exact: true }).click();
+  await page.getByLabel("Appearance").selectOption("dark");
+  await page.getByLabel("Board opacity").fill("45");
+  await page.getByRole("button", { name: "Save settings" }).click();
+  await page.keyboard.press("Escape");
+  // Browser preview deliberately paints a wallpaper. Remove only that marker
+  // to inspect the same transparent CSS surface used by the native WebView.
+  const viewStyles = await page.evaluate(() => {
+    document.querySelector(".workspace")!.classList.remove("browser-preview");
+    return {
+      root: getComputedStyle(document.documentElement).backgroundColor,
+      workspace: getComputedStyle(document.querySelector(".workspace")!).backgroundColor,
+      panelOpacity: getComputedStyle(document.querySelector(".board")!).opacity,
+      panelBackground: getComputedStyle(document.querySelector(".board")!).backgroundColor,
+      titleBackground: getComputedStyle(document.querySelector(".brand")!).backgroundColor,
+    };
+  });
+  expect(viewStyles.root).toBe("rgba(0, 0, 0, 0)");
+  expect(viewStyles.workspace).toBe("rgba(0, 0, 0, 0)");
+  expect(viewStyles.panelOpacity).toBe("1");
+  expect(viewStyles.panelBackground).toBe("rgba(38, 59, 43, 0.45)");
+  expect(viewStyles.titleBackground).not.toBe("rgba(0, 0, 0, 0)");
+  await expect(page.locator(".brand")).toContainText("v0.2.1");
+});
 for (const [width, height] of [
   [1366, 768],
   [1920, 1080],

@@ -1,5 +1,13 @@
 # Validation — 10 October 2026
 
+## Version 0.2.1 visibility and startup repair
+
+The root background reset now overrides the preview's `:root` background. View Mode leaves the desktop visible; opacity affects panel backgrounds instead of fading text and controls. The app title has a contrasting surface and a visible version number.
+
+Native Edit/View changes now run in order on the Windows UI thread. Previously, Tauri could queue the click-through style change while Win32 alpha initialization ran immediately on another thread, leaving the newly layered window uninitialized and invisible. The release app also refreshes an existing enabled startup entry to its current executable without enabling startup for users who had it off.
+
+Frontend compilation, six unit tests, and twelve Edge interaction tests passed. The added regression check verifies transparent root and View Mode backgrounds, readable panel contents at 45% opacity, and the visible version label. Native compilation and interactive acceptance are pending the private GitHub Windows build.
+
 ## Version 0.2 integration
 
 The approved interface is implemented in the Vue application: title-only sticky notes, friendlier fonts and column icons, frog character, desktop icon clearance, separate calendar and quick checklist, and a round clock with configurable timer below the checklist. No sample cards or tasks are added to real boards.

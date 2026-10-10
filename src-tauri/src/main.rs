@@ -172,6 +172,14 @@ fn main() {
                 shortcut: Mutex::new(shortcut.clone()),
                 warning: Mutex::new(warning),
             });
+            // Keep an existing startup preference, but refresh its executable
+            // after an update from a portable/development copy to the installed app.
+            #[cfg(not(debug_assertions))]
+            if app.autolaunch().is_enabled()? {
+                if let Err(e) = app.autolaunch().enable() {
+                    report(app.handle(), format!("Could not update Windows startup: {e}"));
+                }
+            }
             let title = MenuItem::with_id(app, "title", "Life Kanban", false, None::<&str>)?;
             let edit = MenuItem::with_id(app, "edit", "Edit Kanban", true, None::<&str>)?;
             let view = MenuItem::with_id(app, "view", "View Mode", true, None::<&str>)?;

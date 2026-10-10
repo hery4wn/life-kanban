@@ -70,6 +70,18 @@ pub fn apply(app: &AppHandle, editing: bool) -> Result<(), String> {
     let window = app
         .get_webview_window("main")
         .ok_or("Board window unavailable")?;
+    // Tauri setters queue work when invoked off the UI thread. The layered alpha
+    // must be initialized AFTER click-through adds WS_EX_LAYERED, not before it.
+    // On the UI thread the setters and Win32 restoration execute in order.
+    let target = window.clone();
+    let (sender, receiver) = std::sync::mpsc::channel();
+    window.run_on_main_thread(move || {
+        let _ = sender.send(apply_window(&target, editing));
+    }).map_err(|e| e.to_string())?;
+    receiver.recv().map_err(|e| e.to_string())?
+}
+
+fn apply_window(window: &WebviewWindow, editing: bool) -> Result<(), String> {
     if editing {
         window
             .set_always_on_bottom(false)
@@ -79,7 +91,7 @@ pub fn apply(app: &AppHandle, editing: bool) -> Result<(), String> {
             .set_ignore_cursor_events(false)
             .map_err(|e| e.to_string())?;
         window.unminimize().map_err(|e| e.to_string())?;
-        fit_work_area(&window)?;
+        fit_work_area(window)?;
         window.show().map_err(|e| e.to_string())?;
         window.set_focus().map_err(|e| e.to_string())?;
     } else {
@@ -93,5 +105,5 @@ pub fn apply(app: &AppHandle, editing: bool) -> Result<(), String> {
             .map_err(|e| e.to_string())?;
         window.show().map_err(|e| e.to_string())?;
     }
-    finish_native_mode(&window, editing)
+    finish_native_mode(window, editing)
 }
