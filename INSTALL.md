@@ -1,8 +1,8 @@
 # Install Life Kanban
 
-Life Kanban 0.2 is for Windows 10/11, 64-bit. You do not need Node.js or Rust to use it.
+Life Kanban 0.2.1 is for Windows 10/11, 64-bit. You do not need Node.js or Rust to use it.
 
-1. Run the `Life Kanban_0.2.0_x64-setup.exe` installer.
+1. Run the `Life Kanban_0.2.1_x64-setup.exe` installer.
 2. Open **Life Kanban** from the Windows Start menu.
 3. Press **Ctrl + Shift + K** to edit your board. The application starts in a quiet, transparent View Mode.
 4. Add project titles to the four Kanban columns. Add small tasks in the separate quick checklist. Set minutes and seconds beside the round clock to start a focus timer.
@@ -21,3 +21,4 @@ Data is stored in `%APPDATA%\com.lifekanban.desktop\board.json`. A previous vali
 You can uninstall Life Kanban from **Settings → Apps → Installed apps**. Keep a backup of your board first.
 
 See `README.md` for keyboard controls and desktop behavior, and `VALIDATION.md` for the checks performed and remaining Windows acceptance checks.
+

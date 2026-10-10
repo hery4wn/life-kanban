@@ -6,7 +6,7 @@ The root background reset now overrides the preview's `:root` background. View M
 
 Native Edit/View changes now run in order on the Windows UI thread. Previously, Tauri could queue the click-through style change while Win32 alpha initialization ran immediately on another thread, leaving the newly layered window uninitialized and invisible. The release app also refreshes an existing enabled startup entry to its current executable without enabling startup for users who had it off.
 
-Frontend compilation, six unit tests, and twelve Edge interaction tests passed. The added regression check verifies transparent root and View Mode backgrounds, readable panel contents at 45% opacity, and the visible version label. Native compilation and interactive acceptance are pending the private GitHub Windows build.
+Frontend compilation, six unit tests, and twelve Edge interaction tests passed. The added regression check verifies transparent root and View Mode backgrounds, readable panel contents at 45% opacity, and the visible version label. The private Windows build 38025265238 passed all three native persistence tests, optimized compilation, and installer packaging. Version 0.2.1 was installed over 0.2.0 on this computer; the installer returned exit code 0 and Windows reports version 0.2.1. The installed app shows its version, opens Edit Mode using Ctrl+Shift+K, and returns to View Mode using Escape. The user confirmed that the board is visible on the desktop with other windows minimized. Window diagnostics report visible=true and layered alpha=255. Existing 13 project cards and one quick task are unchanged against the pre-install backup. The old portable process was closed and Windows startup now points to the installed executable rather than the development copy. A physical reboot was not performed; tray, click-through, DPI and extended idle acceptance remain separate checks. Installer SHA-256: 8A0EE6467DDB236E211B3BEA6AB1145D9FC0804B97F970FF893DB9D161D84A30. Downloaded archive SHA-256 matched GitHub artifact digest 4cb29dfb9aa82d0f88b84e69d35455c3f27f0670c1d204a53bf58ad52b0e94f0. The native screenshot capture of this click-through background window can show the foreground application instead of the board; it is not proof that the board is hidden.
 
 ## Version 0.2 integration
 
@@ -58,3 +58,4 @@ npm run test:ui
 ```
 
 Native test data used a debug-only `LIFE_KANBAN_TEST_DATA_DIR` override, separate from the user's real AppData board. The delivered app starts with an empty board when no saved board exists.
+

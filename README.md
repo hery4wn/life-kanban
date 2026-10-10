@@ -4,9 +4,9 @@ A small, local Windows Kanban board built with Tauri 2, Vue 3, TypeScript, and V
 
 ## Run it
 
-Version 0.2 implements the reviewed sticky-note design, separate calendar and quick checklist, frog mascot, local clock, and adjustable timer. The optimized Windows installer was built successfully on GitHub Actions on 10 October 2026. See [INSTALL.md](INSTALL.md) for setup and [VALIDATION.md](VALIDATION.md) for checks and platform limits.
+Version 0.2.1 implements the reviewed sticky-note design, separate calendar and quick checklist, frog mascot, local clock, and adjustable timer. The optimized Windows installer was built successfully on GitHub Actions on 10 October 2026. See [INSTALL.md](INSTALL.md) for setup and [VALIDATION.md](VALIDATION.md) for checks and platform limits.
 
-The setup file is `artifacts/installer-0.2/Life Kanban_0.2.0_x64-setup.exe` in this local workspace. It is also available as the **Life-Kanban-Windows-installer** artifact on [the successful private build](https://github.com/hery4wn/life-kanban/actions/runs/38018393728). The GitHub artifact is retained until 24 October 2026; the downloaded local copy remains available. The installer is unsigned. The previous 0.1 debug ZIP does not contain this redesign.
+The setup file is `artifacts/installer-0.2.1/Life Kanban_0.2.1_x64-setup.exe` in this local workspace. It is also available as the **Life-Kanban-Windows-installer** artifact on [the successful private build](https://github.com/hery4wn/life-kanban/actions/runs/38025265238). The GitHub artifact is retained until 24 October 2026; the downloaded local copy remains available. The installer is unsigned. The previous 0.1 debug ZIP does not contain this redesign.
 
 On a Windows build machine that permits the development tools, build the installer with:
 
@@ -124,3 +124,4 @@ npm run test:ui
 ```
 
 Browser tests use installed Microsoft Edge, isolate their data, and exercise pointer dragging, ordering, keyboard moves, CRUD, confirmation, themes, reload persistence, damaged-data handling, and desktop viewport sizes. Rust tests exercise actual filesystem writes, backup recovery, and data validation. See `VALIDATION.md` for checks performed on this machine and remaining platform coverage.
+
